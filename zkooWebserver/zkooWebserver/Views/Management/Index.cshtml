@@ -1,0 +1,41 @@
+﻿@using zkooWebserver.ViewModels
+@model AppointmentsViewModel;
+
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_AccountLayout.cshtml";
+}
+
+<p>
+    <a asp-controller="Management" asp-action="Create" class="btn btn-info text-decoration-none">Create new appointment</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Appointments.First().Patient)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Appointments.First().Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Appointments.First().Doctor)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Appointments)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    <a asp-controller="Management" asp-action="Edit" asp-route-id="@item.AppointmentId" class="btn btn-warning text-decoration-none">Edit</a> |
+                    <a asp-controller="Management" asp-action="Details" asp-route-id="@item.AppointmentId" class="btn btn-info text-decoration-none">Details</a> |
+                    <a asp-controller="Management" asp-action="Delete" asp-route-id="@item.AppointmentId" class="btn btn-danger text-decoration-none">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
