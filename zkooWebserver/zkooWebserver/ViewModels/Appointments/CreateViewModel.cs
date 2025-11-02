@@ -4,6 +4,9 @@ namespace zkooWebserver.ViewModels.Appointments
 {
     public class CreateViewModel
     {
-        public Appointment Appointment { get; set; }
+        public string Patient { get; set; }
+        public string Doctor { get; set; }
+
+        public string Date { get; set; }
     }
 }

@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Runtime.InteropServices;
+
 using zkooWebserver.Models;
 using zkooWebserver.ViewModels;
 
@@ -15,10 +17,14 @@ namespace zkooWebserver.Controllers
             UserManager = userManager;
         }
 
+        
         public IActionResult Login() => View();
+
+        
         public IActionResult Register() => View();
 
         [HttpPost]
+        
         public async Task<IActionResult> Login(LoginViewModel model)
         {
             if (!ModelState.IsValid)
@@ -27,7 +33,7 @@ namespace zkooWebserver.Controllers
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, false, false);
 
             if (result.Succeeded) {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Management");
             }
             else
             {

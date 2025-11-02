@@ -25,9 +25,6 @@ namespace zkooWebserver.Models
             left.AppointmentId == right.AppointmentId;
         public static bool operator !=(Appointment left, Appointment right) =>
             left.AppointmentId != right.AppointmentId;
-        public bool IsValid() => Doctor is not null
-            && Patient is not null
-            && !Date.IsNullOrEmpty();
 
     }
 }

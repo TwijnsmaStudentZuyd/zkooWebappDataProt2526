@@ -83,14 +83,15 @@ namespace zkooWebserver.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(CreateViewModel model)
         {
-            if (!ModelState.IsValid || !model.Appointment.IsValid())
+            if (!ModelState.IsValid)
                 return View(model);
 
             Appointment appointment = new()
             {
-                Patient = model.Appointment.Patient,
-                Doctor = model.Appointment.Doctor,
-                Date = model.Appointment.Date
+                AppointmentId = Convert.ToInt32(new Guid()),
+                Patient = (Patient)_context.Doctors.Select(x => x.Name == model.Patient),
+                Doctor = (Doctor)_context.Doctors.Select(x => x.Name == model.Doctor),
+                Date = model.Date
             };
 
             _context.Appointment.Add(appointment);
